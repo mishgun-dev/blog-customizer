@@ -6,8 +6,6 @@ import { useEnterSubmit } from './hooks/useEnterSubmit';
 import styles from './RadioGroup.module.scss';
 
 type OptionProps = {
-	value: OptionType['value'];
-	title: OptionType['title'];
 	selected: OptionType;
 	groupName: string;
 	onChange?: (option: OptionType) => void;
@@ -15,16 +13,17 @@ type OptionProps = {
 };
 
 export const Option = (props: OptionProps) => {
-	const { value, title, selected, groupName, onChange, option } = props;
+	const { selected, groupName, onChange, option } = props;
+	const { value, title } = option;
 
 	const optionRef = useRef<HTMLDivElement>(null);
 
 	const handleChange = () => onChange?.(option);
 
-	useEnterSubmit({ onChange, option });
+	useEnterSubmit({ onChange, option, optionRef });
 
 	const inputId = `${groupName}_radio_item_with_value__${value}`;
-	const isChecked = value === selected.title;
+	const isChecked = value === selected.value;
 
 	return (
 		<div
@@ -40,6 +39,7 @@ export const Option = (props: OptionProps) => {
 				name={groupName}
 				id={inputId}
 				value={value}
+				checked={isChecked}
 				onChange={handleChange}
 				tabIndex={-1}
 			/>
