@@ -31,8 +31,6 @@ export const RadioGroup = (props: RadioGroupProps) => {
 					<Option
 						key={option.value}
 						groupName={name}
-						value={option.value}
-						title={option.title}
 						selected={selected}
 						onChange={() => handleChange(option)}
 						option={option}
