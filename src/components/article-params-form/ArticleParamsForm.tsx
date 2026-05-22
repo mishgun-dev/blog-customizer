@@ -143,9 +143,8 @@ export const ArticleParamsForm = ({
 					</div>
 
 					<div className={styles.fieldContainer}>
-						<RadioGroup
+						<Select
 							selected={formState.contentWidth}
-							name='contentWidth'
 							options={contentWidthArr}
 							onChange={handleContentWidthChange}
 							title='Ширина контента'
